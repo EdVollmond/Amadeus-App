@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/baseLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/amadeus_back"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/charMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+
+        tools:visibility="visible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/progressBarConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/progress_bar"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/responceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_above="@id/inputLayout"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/textresponse">
+
+
+        <TextView
+            android:id="@+id/textResponse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/noto_sans"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:shadowColor="@color/textResponseShadowColor"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="10"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/textResponseColor"
+            android:textColorHighlight="@color/textHighlightColor"
+            android:textColorHint="@color/textHintColor"
+            android:textColorLink="@color/textLinkColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/buttonMenu"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:onClick="onOtherClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_menu" />
+
+    <ImageView
+        android:id="@+id/textInputTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/inputLayout"
+        android:scaleType="fitEnd"
+        android:src="@drawable/text_input_top" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/imageTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/textinput" />
+
+        <ImageButton
+            android:id="@+id/buttonSend"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:foregroundGravity="center"
+            android:onClick="onSendClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/button_send" />
+
+        <EditText
+            android:id="@+id/textInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/buttonSend"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans"
+            android:hint="@string/default_text"
+            android:inputType="textMultiLine"
+            android:textColor="@color/textInputColor"
+            android:textColorHighlight="@color/textHighlightColor"
+            android:textColorHint="@color/textHintColor"
+            android:textColorLink="@color/textLinkColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/textHintColor"
+            android:textCursorDrawable="@drawable/color_cursor"/>
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="220dp"
+        android:layout_height="240dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:onClick="onCharacterClick"
+        android:src="@drawable/transparent_button"
+        android:background="@null"
+        android:backgroundTint="@null"/>
+
+    <TextView
+        android:id="@+id/errorTextMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textInputTop"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/noto_sans"
+
+        android:text="ERROR"
+        android:textAlignment="center"
+        android:textColor="@color/textLinkColor"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

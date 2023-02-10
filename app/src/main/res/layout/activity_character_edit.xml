@@ -1,0 +1,322 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/character_edit_background" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:cropToPadding="false"
+        android:rotation="180"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/textinput" />
+
+
+    <TextView
+        android:id="@+id/chatTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/mongolian_baiti"
+        android:text="CHARACTER EDIT"
+        android:textAlignment="center"
+        android:textColor="@color/textHighlightColor"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:foregroundGravity="center|center_horizontal"
+        android:onClick="goMain"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_back" />
+
+    <ImageButton
+        android:id="@+id/buttonDrop"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:foregroundGravity="center|center_horizontal"
+        android:onClick="onDrop"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_regenerate" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView8"
+        android:rotation="-180"
+        android:scaleType="fitEnd"
+        app:srcCompat="@drawable/text_input_top" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageView"
+        android:layout_above="@id/buttonSaveChanges"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/charNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Name:"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:hint="Name..."
+                android:scrollbars="vertical"
+                android:inputType="textPersonName"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charPersonalityTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Personality:"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charPersona"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Personality..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charGreetingsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Greeting:"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charGreetings0"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Greeting..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/worldScenarioTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="World scenario:"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/worldScenario"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="World scenario..."
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/exampleDialogueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Example dialogue:"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/exampleDialogue"
+                android:layout_width="match_parent"
+                android:layout_height="540dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="Example dialogue..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charGreetingsTextView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Extra greeting №1 (optional):"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charGreetings1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Greeting..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charGreetingsTextView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Extra greeting №2 (optional):"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charGreetings2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Greeting..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charGreetingsTextView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Extra greeting №3 (optional):"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charGreetings3"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Greeting..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/charGreetingsTextView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Extra greeting №4 (optional):"
+                android:textAlignment="textStart"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/charGreetings4"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/textHintColor"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="top|left"
+                android:hint="Greeting..."
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine"
+                android:textAlignment="textStart"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/buttonSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:foregroundGravity="center|center_horizontal"
+        android:onClick="onSave"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_save_changes" />
+
+
+</RelativeLayout>

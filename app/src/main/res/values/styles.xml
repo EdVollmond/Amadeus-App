@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="itemTextStyle.AppTheme" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@drawable/color_item_popup</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="PreferenceScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColor">@color/textHighlightColor</item>
+        <item name="android:fontFamily">@font/noto_sans</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">@color/ColorPrimaryDark</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">20</item>
+    </style>
+    <style name="Theme.Amadeus" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</item>
+    </style>
+    <style name="PopupMenu" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupBackground">@drawable/popup_background</item>
+    </style>
+
+    <style name="SeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">@color/textHighlightColor</item>
+        <item name="android:progressTint">@color/ColorPrimary</item>
+        <item name="android:thumbTint">@color/ColorPrimary</item>
+    </style>
+
+    <style name="Switch" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorControlActivated">@color/ColorPrimary</item>
+        <item name="colorSwitchThumbNormal">@color/textHintColor</item>
+        <item name="android:colorForeground">@color/ColorPrimaryDark</item>
+    </style>
+</resources>

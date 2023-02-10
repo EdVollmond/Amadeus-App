@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/chats_history"
+        android:fontFamily="@font/noto_sans"
+        android:title="Chats history"
+        android:visible="true" />
+    <item
+        android:id="@+id/settings"
+        android:fontFamily="@font/noto_sans"
+        android:title="Settings"
+        android:visible="true" />
+    <item
+        android:id="@+id/start_new_chat"
+        android:title="Start new chat"
+        android:fontFamily="@font/noto_sans"
+        android:visible="true" />
+    <item
+        android:id="@+id/remove_message"
+        android:title="Remove message"
+        android:fontFamily="@font/noto_sans"
+        android:visible="true" />
+    <item
+        android:id="@+id/regenerate"
+        android:fontFamily="@font/noto_sans"
+        android:title="Regenerate"
+        android:visible="true" />
+</menu>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChatsHistoryActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/launch_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/logo_launcher" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="335dp"
+        android:fontFamily="@font/mongolian_baiti"
+
+        android:text="LOGIN"
+        android:textAlignment="center"
+        android:textColor="@color/textHighlightColor"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="369dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="280dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/bordered" />
+
+    <EditText
+        android:id="@+id/loginInput"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="280dp"
+        android:fontFamily="@font/noto_sans"
+        android:hint="Enter your login..."
+        android:inputType="textPersonName"
+        android:textColor="@color/textHighlightColor"
+        android:textColorHighlight="@color/textHighlightColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/chatTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="260dp"
+        android:fontFamily="@font/mongolian_baiti"
+
+        android:text="SERVER ADDRESS"
+        android:textAlignment="center"
+        android:textColor="@color/textHighlightColor"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="369dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        app:srcCompat="@drawable/bordered" />
+
+    <EditText
+        android:id="@+id/urlInput"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/textHintColor"
+        android:fontFamily="@font/noto_sans"
+        android:hint="Enter address of server..."
+        android:inputType="textWebEmailAddress"
+        android:textColor="@color/textHighlightColor"
+        android:textColorHighlight="@color/textHighlightColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_connect"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/noto_sans"
+
+        android:textAlignment="center"
+        android:textColor="@color/textLinkColor"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/button_connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:onClick="onConnect"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_connect" />
+
+    <ImageButton
+        android:id="@+id/button_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:onClick="onCancel"
+        android:scaleType="fitCenter"
+        android:src="@drawable/button_cancel" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/progressBarConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/progress_bar"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/creditsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/noto_sans"
+
+        android:text="Made by EdVollmond"
+        android:textAlignment="center"
+        android:textColor="#404040"
+        android:textColorHighlight="@color/textInputColor"
+        android:textColorHint="@color/textHintColor"
+        android:textColorLink="@color/textLinkColor"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+</RelativeLayout>

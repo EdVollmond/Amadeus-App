@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ColorPrimary">#FF5722</color>
+    <color name="ColorPrimaryDark">#000000</color>
+    <color name="textInputColor">#FFFFFF</color>
+    <color name="textResponseColor">#000000</color>
+    <color name="textResponseShadowColor">#FFFFFF</color>
+    <color name="textHighlightColor">#FFB829</color>
+    <color name="textHintColor">#C8C8C8</color>
+    <color name="textLinkColor">#CC0000</color>
+</resources>

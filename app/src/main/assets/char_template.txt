@@ -1,0 +1,1 @@
+{"char_name":"{{char_name}}","char_persona":"{{char_persona}}","char_greeting":"{{char_greeting}}","world_scenario":"{{world_scenario}}","example_dialogue":"{{example_dialogue}}"}

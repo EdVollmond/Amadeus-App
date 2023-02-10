@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/change_emotion"
+        android:fontFamily="@font/noto_sans"
+        android:title="Change emotion"
+        android:visible="true" />
+    <item
+        android:id="@+id/edit_character"
+        android:title="Edit character"
+        android:fontFamily="@font/noto_sans"
+        android:visible="true" />
+
+</menu>
