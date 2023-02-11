@@ -124,14 +124,14 @@
             <EditText
                 android:id="@+id/charPersona"
                 android:layout_width="match_parent"
-                android:layout_height="380dp"
+                android:layout_height="240dp"
                 android:backgroundTint="@color/textHintColor"
                 android:ems="10"
                 android:fontFamily="@font/noto_sans"
                 android:gravity="top|left"
                 android:hint="Personality..."
-                android:scrollbars="vertical"
                 android:inputType="textMultiLine"
+                android:scrollbars="vertical"
                 android:textAlignment="textStart"
                 android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -301,6 +301,19 @@
                 android:inputType="textMultiLine"
                 android:textAlignment="textStart"
                 android:textCursorDrawable="@drawable/color_cursor" />
+
+            <Switch
+                android:id="@+id/switchCustomChar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:checked="false"
+                android:fontFamily="@font/noto_sans"
+                android:text="Custom character sprites"
+                android:textColor="@color/textHighlightColor"
+                android:textSize="20sp"
+                android:theme="@style/Switch" />
 
         </LinearLayout>
     </ScrollView>

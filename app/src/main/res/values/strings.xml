@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AmadeusAI</string>
     <string name="default_text">Enter your message...</string>
+    <string name="default_char_name">Kurisu</string>
     <string name="default_username">Username</string>
 
     <string name="default_emotion">neutral</string>

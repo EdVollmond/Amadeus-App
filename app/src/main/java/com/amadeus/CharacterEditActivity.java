@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -28,6 +29,8 @@ public class CharacterEditActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES_CHAR_GREETING_3 = "charGreeting3";
     public static final String APP_PREFERENCES_CHAR_GREETING_4 = "charGreeting4";
 
+    public static final String APP_PREFERENCES_CUSTOM_CHAR = "customChar";
+
     SharedPreferences amadeusSettings;
 
     private EditText charNameEdit;
@@ -40,6 +43,7 @@ public class CharacterEditActivity extends AppCompatActivity {
     private EditText charGreeting3Edit;
     private EditText charGreeting4Edit;
 
+    private Switch switchCustomChar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         charGreeting2Edit = findViewById(R.id.charGreetings2);
         charGreeting3Edit = findViewById(R.id.charGreetings3);
         charGreeting4Edit = findViewById(R.id.charGreetings4);
+        switchCustomChar = findViewById(R.id.switchCustomChar);
 
         String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
         String charPersona = amadeusSettings.getString(APP_PREFERENCES_CHAR_PERSONA,"");
@@ -68,6 +73,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         String charGreeting3 = amadeusSettings.getString(APP_PREFERENCES_CHAR_GREETING_3,"");
         String charGreeting4 = amadeusSettings.getString(APP_PREFERENCES_CHAR_GREETING_4,"");
 
+
         charNameEdit.setText(charName);
         charPersonaEdit.setText(charPersona);
         charGreeting0Edit.setText(charGreeting0);
@@ -77,6 +83,9 @@ public class CharacterEditActivity extends AppCompatActivity {
         charGreeting2Edit.setText(charGreeting2);
         charGreeting3Edit.setText(charGreeting3);
         charGreeting4Edit.setText(charGreeting4);
+
+        Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
+        switchCustomChar.setChecked(customChar);
 
     }
 
@@ -94,6 +103,8 @@ public class CharacterEditActivity extends AppCompatActivity {
         String charGreeting3 = charGreeting3Edit.getText().toString().trim();
         String charGreeting4 = charGreeting4Edit.getText().toString().trim();
 
+        Boolean customChar = switchCustomChar.isChecked();
+
         amadeusEditor.putString("charName",charName).commit();
         amadeusEditor.putString("charPersona",charPersona).commit();
         amadeusEditor.putString("charGreeting0",charGreeting0).commit();
@@ -104,10 +115,10 @@ public class CharacterEditActivity extends AppCompatActivity {
         amadeusEditor.putString("charGreeting3",charGreeting3).commit();
         amadeusEditor.putString("charGreeting4",charGreeting4).commit();
 
+        amadeusEditor.putBoolean("customChar",customChar).commit();
     }
 
     public void onDrop(View v){
-        SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
 
         try {
             BufferedReader reader = null;
@@ -148,6 +159,8 @@ public class CharacterEditActivity extends AppCompatActivity {
             charGreeting2Edit.setText(charGreeting2);
             charGreeting3Edit.setText(charGreeting3);
             charGreeting4Edit.setText(charGreeting4);
+
+            switchCustomChar.setChecked(false);
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

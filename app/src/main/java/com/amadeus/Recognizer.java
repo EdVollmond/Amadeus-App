@@ -24,7 +24,8 @@ public class Recognizer {
     public static final String APP_PREFERENCES_EMOTIONS_BLUSHED = "emotion_blushed";
     public static final String APP_PREFERENCES_EMOTIONS_APATHETIC = "emotion_apathetic";
     public static final String APP_PREFERENCES_EMOTIONS_ANGRY = "emotion_angry";
-
+    public static final String APP_PREFERENCES_CUSTOM_CHAR = "defaultChar";
+    public static final String APP_PREFERENCES_CHAR_NAME = "charName";
     static SharedPreferences amadeusSettings;
 
     public static String[] getTextEmotion(String rawText){
@@ -154,6 +155,8 @@ public class Recognizer {
         SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
 
         String drawableName = "emotion_neutral";
+        Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
+        String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
 
         if (emotion != "neutral") {
             final Random random = new Random();
@@ -175,73 +178,121 @@ public class Recognizer {
             String emotion_apathetic = amadeusSettings.getString(APP_PREFERENCES_EMOTIONS_APATHETIC, "");
             String emotion_angry = amadeusSettings.getString(APP_PREFERENCES_EMOTIONS_ANGRY, "");
 
+
             if (emotions.contains(emotion)) {
-                if (emotion_angry.contains(emotion)) {
-                    if (random.nextBoolean() == true) {
+                if (customChar == false) {
+                    if (emotion_angry.contains(emotion)) {
+                        if (random.nextBoolean() == true) {
+                            drawableName = "emotion_angry";
+
+                        } else {
+                            drawableName = "emotion_hands_angry";
+                        }
+                    }
+                    if (emotion_apathetic.contains(emotion)) {
+                        drawableName = "emotion_apathetic";
+                    }
+                    if (emotion_blushed.contains(emotion)) {
+                        if (random.nextBoolean() == true) {
+                            drawableName = "emotion_blushed";
+                        } else {
+                            drawableName = "emotion_hands_blushed";
+                        }
+                    }
+                    if (emotion_calm.contains(emotion)) {
+                        drawableName = "emotion_hands_calm";
+
+                    }
+                    if (emotion_displeased.contains(emotion)) {
+                        drawableName = "emotion_displeased";
+
+                    }
+                    if (emotion_glad.contains(emotion)) {
+                        drawableName = "emotion_hands_glad";
+
+                    }
+                    if (emotion_happy.contains(emotion)) {
+                        drawableName = "emotion_happy";
+
+                    }
+                    if (emotion_moody.contains(emotion)) {
+                        drawableName = "emotion_moody";
+
+                    }
+                    if (emotion_playful.contains(emotion)) {
+                        drawableName = "emotion_playful";
+
+                    }
+                    if (emotion_sad.contains(emotion)) {
+                        drawableName = "emotion_sad";
+
+                    }
+                    if (emotion_serious.contains(emotion)) {
+                        drawableName = "emotion_serious";
+
+                    }
+                    if (emotion_skeptical.contains(emotion)) {
+                        drawableName = "emotion_hands_skeptical";
+
+                    }
+                    if (emotion_surprised.contains(emotion)) {
+                        drawableName = "emotion_hands_surprised";
+
+                    }
+                    if (emotion_thoughtful.contains(emotion)) {
+                        drawableName = "emotion_hands_thoughtful";
+
+                    }
+                    if (emotion_tired.contains(emotion)) {
+                        drawableName = "emotion_tired";
+                    }
+                } else {
+                    if (emotion_angry.contains(emotion)) {
                         drawableName = "emotion_angry";
-
-                    } else {
-                        drawableName = "emotion_hands_angry";
                     }
-                }
-                if (emotion_apathetic.contains(emotion)) {
-                    drawableName = "emotion_apathetic";
-                }
-                if (emotion_blushed.contains(emotion)) {
-                    if (random.nextBoolean() == true) {
+                    if (emotion_apathetic.contains(emotion)) {
+                        drawableName = "emotion_apathetic";
+                    }
+                    if (emotion_blushed.contains(emotion)) {
                         drawableName = "emotion_blushed";
-                    } else {
-                        drawableName = "emotion_hands_blushed";
+                        }
+                    if (emotion_calm.contains(emotion)) {
+                        drawableName = "emotion_hands_calm";
+                    }
+                    if (emotion_displeased.contains(emotion)) {
+                        drawableName = "emotion_displeased";
+                    }
+                    if (emotion_glad.contains(emotion)) {
+                        drawableName = "emotion_hands_glad";
+                    }
+                    if (emotion_happy.contains(emotion)) {
+                        drawableName = "emotion_happy";
+                    }
+                    if (emotion_moody.contains(emotion)) {
+                        drawableName = "emotion_moody";
+                    }
+                    if (emotion_playful.contains(emotion)) {
+                        drawableName = "emotion_playful";
+                    }
+                    if (emotion_sad.contains(emotion)) {
+                        drawableName = "emotion_sad";
+                    }
+                    if (emotion_serious.contains(emotion)) {
+                        drawableName = "emotion_serious";
+                    }
+                    if (emotion_skeptical.contains(emotion)) {
+                        drawableName = "emotion_hands_skeptical";
+                    }
+                    if (emotion_surprised.contains(emotion)) {
+                        drawableName = "emotion_hands_surprised";
+                    }
+                    if (emotion_thoughtful.contains(emotion)) {
+                        drawableName = "emotion_hands_thoughtful";
+                    }
+                    if (emotion_tired.contains(emotion)) {
+                        drawableName = "emotion_tired";
                     }
                 }
-                if (emotion_calm.contains(emotion)) {
-                    drawableName = "emotion_hands_calm";
-
-                }
-                if (emotion_displeased.contains(emotion)) {
-                    drawableName = "emotion_displeased";
-
-                }
-                if (emotion_glad.contains(emotion)) {
-                    drawableName = "emotion_hands_glad";
-
-                }
-                if (emotion_happy.contains(emotion)) {
-                    drawableName = "emotion_happy";
-
-                }
-                if (emotion_moody.contains(emotion)) {
-                    drawableName = "emotion_moody";
-
-                }
-                if (emotion_playful.contains(emotion)) {
-                    drawableName = "emotion_playful";
-
-                }
-                if (emotion_sad.contains(emotion)) {
-                    drawableName = "emotion_sad";
-
-                }
-                if (emotion_serious.contains(emotion)) {
-                    drawableName = "emotion_serious";
-
-                }
-                if (emotion_skeptical.contains(emotion)) {
-                    drawableName = "emotion_hands_skeptical";
-
-                }
-                if (emotion_surprised.contains(emotion)) {
-                    drawableName = "emotion_hands_surprised";
-
-                }
-                if (emotion_thoughtful.contains(emotion)) {
-                    drawableName = "emotion_hands_thoughtful";
-
-                }
-                if (emotion_tired.contains(emotion)) {
-                    drawableName = "emotion_tired";
-                }
-
                 amadeusEditor.putString("lastEmotion", emotion).commit();
             } else {
                 amadeusEditor.putString("lastEmotion", "neutral").commit();
@@ -249,7 +300,15 @@ public class Recognizer {
         } else {
             amadeusEditor.putString("lastEmotion", "neutral").commit();
         }
-        String emotionName = "kurisu_" + drawableName;
+
+        String emotionName = "";
+
+        if (customChar == false) {
+            emotionName = "kurisu_" + drawableName;
+        } else {
+            emotionName = charName.trim().toLowerCase() + drawableName;
+        }
+
         return emotionName;
     }
 
