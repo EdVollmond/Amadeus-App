@@ -303,11 +303,9 @@ public class Recognizer {
 
         String emotionName = "";
 
-        if (customChar == false) {
-            emotionName = "kurisu_" + drawableName;
-        } else {
-            emotionName = charName.trim().toLowerCase() + drawableName;
-        }
+
+        emotionName = charName.trim().toLowerCase() + "_" + drawableName;
+
 
         return emotionName;
     }

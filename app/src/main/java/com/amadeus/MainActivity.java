@@ -375,11 +375,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     text = buff;
 
 
-
                     if (text.contains("END_OF_DIALOGUE") & endingByChar == true) {
 
                         Log.i("MAIN", "DIALOGUE WAS ENDED BY CHARACTER");
-                        charMain.setImageResource(R.drawable.kurisu_emotion_back);
+                        String emotionName = charName.trim().toLowerCase() + "_back";
+                        int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                        charMain.setImageResource(emotionResId);
                         String[] buffer = text.split("END_OF_DIALOG");
                         if (buffer.length > 0) {
                             text = buffer[0];
