@@ -64,6 +64,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
     public static final String APP_PREFERENCES_DEBUGGER = "debugger";
 
+    public static final String APP_PREFERENCES_CUSTOM_CHAR = "customChar";
     static SharedPreferences amadeusSettings;
 
 
@@ -360,6 +361,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                     String rawText = result;
 
+                    String defaultCharName = getResources().getString(R.string.default_char_name);
+                    Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
+                    String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
+
 
                     String lastResponse = amadeusSettings.getString(APP_PREFERENCES_LAST_RESPONSE, charGreeting);
                     String currentChatHistory = amadeusSettings.getString(APP_PREFERENCES_CURRENT_CHAT_HISTORY, "");
@@ -378,9 +383,17 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     if (text.contains("END_OF_DIALOGUE") & endingByChar == true) {
 
                         Log.i("MAIN", "DIALOGUE WAS ENDED BY CHARACTER");
-                        String emotionName = charName.trim().toLowerCase() + "_back";
-                        int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-                        charMain.setImageResource(emotionResId);
+
+                        if (customChar == false) {
+                            String emotionName = defaultCharName.trim().toLowerCase() + "_back";
+                            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                            charMain.setImageResource(emotionResId);
+                        } else {
+                            String emotionName = charName.trim().toLowerCase() + "_back";
+                            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                            charMain.setImageResource(emotionResId);
+                        }
+
                         String[] buffer = text.split("END_OF_DIALOG");
                         if (buffer.length > 0) {
                             text = buffer[0];

@@ -24,7 +24,7 @@ public class Recognizer {
     public static final String APP_PREFERENCES_EMOTIONS_BLUSHED = "emotion_blushed";
     public static final String APP_PREFERENCES_EMOTIONS_APATHETIC = "emotion_apathetic";
     public static final String APP_PREFERENCES_EMOTIONS_ANGRY = "emotion_angry";
-    public static final String APP_PREFERENCES_CUSTOM_CHAR = "defaultChar";
+    public static final String APP_PREFERENCES_CUSTOM_CHAR = "customChar";
     public static final String APP_PREFERENCES_CHAR_NAME = "charName";
     static SharedPreferences amadeusSettings;
 
@@ -155,6 +155,7 @@ public class Recognizer {
         SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
 
         String drawableName = "emotion_neutral";
+        String defaultCharName = context.getResources().getString(R.string.default_char_name);
         Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
         String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
 
@@ -184,7 +185,6 @@ public class Recognizer {
                     if (emotion_angry.contains(emotion)) {
                         if (random.nextBoolean() == true) {
                             drawableName = "emotion_angry";
-
                         } else {
                             drawableName = "emotion_hands_angry";
                         }
@@ -303,9 +303,15 @@ public class Recognizer {
 
         String emotionName = "";
 
+        if (customChar == false) {
+            emotionName = defaultCharName.trim().toLowerCase() + "_" + drawableName;
 
-        emotionName = charName.trim().toLowerCase() + "_" + drawableName;
+        } else {
+            emotionName = charName.trim().toLowerCase() + "_" + drawableName;
+        }
 
+        Log.i("RECOG",customChar.toString());
+        Log.i("RECOG",emotionName);
 
         return emotionName;
     }
