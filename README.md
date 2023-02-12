@@ -22,3 +22,11 @@
 [![](https://i.ibb.co/s5yGM8v/image.png)](https://i.ibb.co/s5yGM8v/image.png)
 
 If everything is done correctly, then after loading you will be able to communicate with Amadeus.
+
+
+# FEATURES
+1. You can write messages to Kurisu in the text input field and send it through button with envelope icon. Wait some time until in white field will appear her response.
+2.  If you don't like the answer or you think it doesn't match the character, you can generate the answer again. Just tap on the "menu" button in the upper-right part of the screen and select "regenerate". After that, the "send" button will change the icon to "regeneration" and after clicking on it, the response will be generated.
+3. If you think that your last message or messages were incorrect, you can completely remove them from the current dialog by selecting "remove message" in the menu.
+4. If you think that the current emotion does not correspond to the context of the dialogue, then you can tap on the character's face and select "change emotion". Then choose the emotion that you think is more appropriate. This emotion will remain in the current chat and the character will "think" that this is exactly the emotion what she had.
+5. If you want to start the dialog again, then you should select "Start new chat" from the right-top menu.The old dialog will be saved to the dialog history, which can also be opened via the menu.
