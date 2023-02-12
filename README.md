@@ -1,7 +1,8 @@
 # HOW TO LAUNCH
 1.	Download the APK file of the application in the "releases" section and install it to your device.
 2.	Host KoboldAI with PygmalionAI on a virtual machine.
-	2.1.	Via Google Colab: [TPU edition](https://colab.research.google.com/github/KoboldAI/KoboldAI-Client/blob/main/colab/TPU.ipynb "TPU edition") or [GPU edition](https://colab.research.google.com/github/koboldai/KoboldAI-Client/blob/main/colab/GPU.ipynb "GPU edition"). You need to set "Pygmalion6B" in the list and click "play" button on the left side of code block.
+	
+	2.1.	Via Google Colab: [LINK](https://colab.research.google.com/github/koboldai/KoboldAI-Client/blob/main/colab/GPU.ipynb "GPU edition"). You need to set "Pygmalion6B" in the list and click "play" button on the left side of code block.
 	
 	[![img1](https://i.ibb.co/pvWtqx0/redme1.jpg "img1")](https://i.ibb.co/pvWtqx0/redme1.jpg "img1")
 	
