@@ -26,11 +26,11 @@ If everything is done correctly, then after loading you will be able to communic
 
 # FEATURES
 ### Chat
-1. You can write messages to Kurisu in the text input field and send it through button with envelope icon. Wait some time until in white field will appear her response.
-2.  If you don't like the answer or you think it doesn't match the character, you can generate the answer again. Just tap on the "menu" button in the upper-right part of the screen and select "regenerate". After that, the "send" button will change the icon to "regeneration" and after clicking on it, the response will be generated.
-3. If you think that your last message or messages were incorrect, you can completely remove them from the current dialog by selecting "remove message" in the menu.
-4. If you think that the current emotion does not correspond to the context of the dialogue, then you can tap on the character's face and select "change emotion". Then choose the emotion that you think is more appropriate. This emotion will remain in the current chat and the character will "think" that this is exactly the emotion what she had.
-5. If you want to start the dialog again, then you should select "Start new chat" from the right-top menu.The old dialog will be saved to the dialog history, which can also be opened via the menu.
+You can write messages to Kurisu in the text input field and send it through "Send" button with envelope icon. Wait some time until in white field will appear her response.
+1.  If you don't like the answer or you think it doesn't match the character, you can generate the answer again. Just tap on the "Menu" button in the upper-right part of the screen and select "Regenerate". After that, the "Send" button will change the icon to "Regeneration" and after clicking on it, the response will be generated.
+2. If you think that your last message or messages were incorrect, you can completely remove them from the current dialog by selecting "Remove message" in the menu.
+3. If you think that the current emotion does not correspond to the context of the dialogue, then you can tap on the character's face and select "Change emotion". Then choose the emotion that you think is more appropriate. This emotion will remain in the current chat and the character will "think" that this is exactly the emotion what she had.
+4. If you want to start the dialog again, then you should select "Start new chat" from the right-top menu.The old dialog will be saved to the dialog history, which can also be opened via the menu.
 
 ### Settings
 You can go to the application settings via the right-top menu.
@@ -41,3 +41,23 @@ You can go to the application settings via the right-top menu.
 5. **Repetition penalty.** Used to penalize words that were already generated or belong to the context.
 6. **Repetition penalty range.** If set higher than 0, only applies repetition penalty to the last few tokens of the story rather than applying it to the entire story. The slider controls the amount of tokens at the end of your story to apply it to.
 
+After changing the settings, you can save them by tapping the big "Save changes" button. If you close the settings screen, the settings will not be saved. If you want to reset the settings to the default settings, then you should click on the "reset" button in the upper-right part of the screen and then click "Save changes".
+
+### Character edit
+You can edit your character's personality by tapping on her face and selecting "Edit character". The information here is very similar like character description for PygmalionAI or Character.ai . You can read more about creating a character's description in the [PygmalionAI Discord server](https://discord.gg/pygmalionai "PygmalionAI Discord server").
+1. **Name.** Name of your character.
+2. **Personality.** Short description of character. Base information about she.
+3. **Greeting.** The standard greeting of the character.
+4. **World scenario.**A brief description of the situation in which the dialogue takes place.
+5. **Example dialogue.** An example or examples of how a character communicates with a user. Must be in the following format:
+```
+<START>
+Character: (emotion: ...) ...
+You: ...
+Character: (emotion: ...) ...
+```
+6. **Extra greetings.** You can specify more additional options for how the character will start the dialogue.
+
+Remember! Try not to write in too much detail in this page, it takes away context memory!
+
+After editing the fields, you can save them by tapping the big "Save changes" button. If you close the editing screen, the changes will not be saved. If you want to reset the character personality to the default, then you should click on the "Reset" button in the upper-right part of the screen and then click "Save changes".
