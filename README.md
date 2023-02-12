@@ -85,6 +85,7 @@ List of emotion names:
 > calm
 > back
 
+"Back" is an emotion when a character finishes a dialogue.
 It's okay if the same sprite is used for different emotions. The main thing is that there should be 17 files.
 
 The name of the character in the file name is written in lowercase. If there is a space in the name, it is replaced by underlining.
