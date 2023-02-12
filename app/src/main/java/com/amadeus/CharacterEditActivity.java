@@ -73,6 +73,10 @@ public class CharacterEditActivity extends AppCompatActivity {
         String charGreeting3 = amadeusSettings.getString(APP_PREFERENCES_CHAR_GREETING_3,"");
         String charGreeting4 = amadeusSettings.getString(APP_PREFERENCES_CHAR_GREETING_4,"");
 
+        String buffer = exampleDialogue.replace("\\n","\n");
+        exampleDialogue = buffer;
+        buffer = charPersona.replace("\\n","\n");
+        charPersona = buffer;
 
         charNameEdit.setText(charName);
         charPersonaEdit.setText(charPersona);
@@ -104,6 +108,11 @@ public class CharacterEditActivity extends AppCompatActivity {
         String charGreeting4 = charGreeting4Edit.getText().toString().trim();
 
         Boolean customChar = switchCustomChar.isChecked();
+
+        String buffer = exampleDialogue.replace("\n","\\n");
+        exampleDialogue = buffer;
+        buffer = charPersona.replace("\n","\\n");
+        charPersona = buffer;
 
         amadeusEditor.putString("charName",charName).commit();
         amadeusEditor.putString("charPersona",charPersona).commit();

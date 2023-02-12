@@ -66,6 +66,8 @@ public class LauncherActivity extends AppCompatActivity {
 
         String inputUrl = urlInput.getText().toString().replace("api","");
 
+        Log.i("LAUNCHER",inputUrl);
+
         if (urlInput.getText().toString().isEmpty()) {
             progressBar.setVisibility(View.GONE);
             errorText.setText("ERROR: server address is not inputted");
@@ -78,17 +80,17 @@ public class LauncherActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             RequestQueue queue = Volley.newRequestQueue(LauncherActivity.this);
             String url = inputUrl + "/api/v1/info/version/";
+            Log.i("LAUNCHER",url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.d("My logging", inputUrl + response);
 
-                            String inputURLfromLaunch = urlInput.getText().toString();
                             String Login = loginInput.getText().toString();
 
                             SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
-                            amadeusEditor.putString("inputURL", inputURLfromLaunch);
+                            amadeusEditor.putString("inputURL", inputUrl);
                             amadeusEditor.putString("inputLogin", Login);
                             amadeusEditor.commit();
 

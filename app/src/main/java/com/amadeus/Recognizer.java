@@ -51,7 +51,13 @@ public class Recognizer {
                 .replace("{","(")
                 .replace("}",")")
                 .replace("]",")")
-                .replace("[","(");
+                .replace("[","(")
+                .replace("end of message","")
+                .replace("End of message","")
+                .replace("END OF MESSAGE", "")
+                .replace("end_of_message","")
+                .replace("End_of_message","")
+                .replace("END_OF_MESSAGE", "");
 
 
         rawText = buff.trim();
@@ -104,7 +110,6 @@ public class Recognizer {
             buff = rawText.replace("(", "*")
                     .replace(")", "*")
                     .replace(".*", "*");
-
             rawText = buff;
 
             Log.i("RECOGNIZER", "RAW1-1 TEXT: " + rawText);
@@ -132,7 +137,7 @@ public class Recognizer {
             }
         }
 
-        if (rawText.equals("")){
+        if (rawText.equals("")|rawText.equals("**")){
             rawText = "...";
         }
 
