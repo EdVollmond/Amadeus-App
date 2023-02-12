@@ -68,22 +68,22 @@ At the moment, there is some possibility to change Kurisu Makise to any other VN
 
 List of emotion names:
 > neutral
-angry
-apathetic
-blushed
-displeased
-glad
-happy
-moody
-playful
-sad
-serious
-skeptical
-surprised
-thoughtful
-tired
-calm
-back
+> angry
+> apathetic
+> blushed
+> displeased
+> glad
+> happy
+> moody
+> playful
+> sad
+> serious
+> skeptical
+> surprised
+> thoughtful
+> tired
+> calm
+> back
 
 It's okay if the same sprite is used for different emotions. The main thing is that there should be 17 files.
 
