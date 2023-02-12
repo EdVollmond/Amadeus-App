@@ -16,7 +16,7 @@
 	
 	
 	After that you need to wait until the model is fully loaded and copy URL address in the following format:
-	[![](https://i.ibb.co/MhwsvDn/image.png)]([https://i.ibb.co/HDhVxwJ/image.png](https://i.ibb.co/MhwsvDn/image.png))
+	[![](https://i.ibb.co/MhwsvDn/image.png)]([https://i.ibb.co/HDhVxwJ/image.png](https://i.ibb.co/1JFN58S/image.png))
 	
 3. Paste URL address in the appropriate field of launch screen of the Amadeus app and tap "Connect".
 [![](https://i.ibb.co/s5yGM8v/image.png)](https://i.ibb.co/s5yGM8v/image.png)
