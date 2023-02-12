@@ -49,15 +49,47 @@ You can edit your character's personality by tapping on her face and selecting "
 2. **Personality.** Short description of character. Base information about she.
 3. **Greeting.** The standard greeting of the character.
 4. **World scenario.** A brief description of the situation in which the dialogue takes place.
-5. **Example dialogue.** An example or examples of how a character communicates with a user. Each dialogue must be in the following format:
+5. **Example dialogue.** An example or examples of how a character communicates with a user. Must be in the following format:
 ```
 <START>
-CharacterName: (emotion: ...) ...
+Character: (emotion: ...) ...
 You: ...
-CharacterName: (emotion: ...) ...
+Character: (emotion: ...) ...
 ```
 6. **Extra greetings.** You can specify more additional options for how the character will start the dialogue.
 
 Remember! Try not to write in too much detail in this page, it takes away context memory!
 
 After editing the fields, you can save them by tapping the big "Save changes" button. If you close the editing screen, the changes will not be saved. If you want to reset the character personality to the default, then you should click on the "Reset" button in the upper-right part of the screen and then click "Save changes".
+
+### Custom characters
+At the moment, there is some possibility to change Kurisu Makise to any other VN character. To do this, you need to put 17 sprites with the emotions of the character in the "drawable" folder inside the .apk package. The files must have a name in the following format:
+> charactername_emotion_emotionname.png
+
+List of emotion names:
+> neutral
+angry
+apathetic
+blushed
+displeased
+glad
+happy
+moody
+playful
+sad
+serious
+skeptical
+surprised
+thoughtful
+tired
+calm
+back
+
+It's okay if the same sprite is used for different emotions. The main thing is that there should be 17 files.
+
+The name of the character in the file name is written in lowercase. If there is a space in the name, it is replaced by underlining.
+
+For example, if the character's name is **Amane Suzu**, then the sprite file where she **blushes** should be called like this:
+> amane_suzu_emotion_blushed.png
+
+After you have placed the files in the .apk package, you need to enter the name of the character in the "Name" field of the character editing screen and at the very bottom put the toggle switch "Custom character sprites" in the enabled position.
