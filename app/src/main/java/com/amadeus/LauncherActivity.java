@@ -64,7 +64,7 @@ public class LauncherActivity extends AppCompatActivity {
     public void onConnect(View view) {
 
 
-        String inputUrl = urlInput.getText().toString();
+        String inputUrl = urlInput.getText().toString().replace("api","");
 
         if (urlInput.getText().toString().isEmpty()) {
             progressBar.setVisibility(View.GONE);

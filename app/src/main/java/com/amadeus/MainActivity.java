@@ -376,7 +376,11 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     Log.i("MAIN", "RAW2 TEXT: " + text);
                     Log.i("MAIN", "EMOTION: " + emotion);
 
-                    String buff = text.replace("END_OF_DIALOG","END_OF_DIALOGUE");
+                    String buff = text.replace("END_OF_DIALOG","END_OF_DIALOGUE")
+                            .replace("*end of conversation*","END_OF_DIALOGUE")
+                            .replace("*end of chat*","END_OF_DIALOGUE")
+                            .replace("*end dialogue*","END_OF_DIALOGUE")
+                            .replace("*end of dialogue*","END_OF_DIALOGUE");
                     text = buff;
 
 

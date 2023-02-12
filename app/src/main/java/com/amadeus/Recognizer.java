@@ -257,13 +257,13 @@ public class Recognizer {
                         drawableName = "emotion_blushed";
                         }
                     if (emotion_calm.contains(emotion)) {
-                        drawableName = "emotion_hands_calm";
+                        drawableName = "emotion_calm";
                     }
                     if (emotion_displeased.contains(emotion)) {
                         drawableName = "emotion_displeased";
                     }
                     if (emotion_glad.contains(emotion)) {
-                        drawableName = "emotion_hands_glad";
+                        drawableName = "emotion_glad";
                     }
                     if (emotion_happy.contains(emotion)) {
                         drawableName = "emotion_happy";
@@ -281,13 +281,13 @@ public class Recognizer {
                         drawableName = "emotion_serious";
                     }
                     if (emotion_skeptical.contains(emotion)) {
-                        drawableName = "emotion_hands_skeptical";
+                        drawableName = "emotion_skeptical";
                     }
                     if (emotion_surprised.contains(emotion)) {
-                        drawableName = "emotion_hands_surprised";
+                        drawableName = "emotion_surprised";
                     }
                     if (emotion_thoughtful.contains(emotion)) {
-                        drawableName = "emotion_hands_thoughtful";
+                        drawableName = "emotion_thoughtful";
                     }
                     if (emotion_tired.contains(emotion)) {
                         drawableName = "emotion_tired";
