@@ -48,7 +48,7 @@ You can edit your character's personality by tapping on her face and selecting "
 1. **Name.** Name of your character.
 2. **Personality.** Short description of character. Base information about she.
 3. **Greeting.** The standard greeting of the character.
-4. **World scenario.**A brief description of the situation in which the dialogue takes place.
+4. **World scenario.** A brief description of the situation in which the dialogue takes place.
 5. **Example dialogue.** An example or examples of how a character communicates with a user. Must be in the following format:
 ```
 <START>
