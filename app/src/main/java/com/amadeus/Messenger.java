@@ -3,8 +3,7 @@ package com.amadeus;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -20,8 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Messenger {
 

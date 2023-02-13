@@ -1,12 +1,11 @@
 package com.amadeus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -120,10 +119,8 @@ public class LauncherActivity extends AppCompatActivity {
         }
     }
     public void onCancel(View v) {
-
         Intent intentMain = new Intent(this, MainActivity.class);
         startActivity(intentMain);
-
     }
 
 

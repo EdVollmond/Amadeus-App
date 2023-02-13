@@ -1,5 +1,6 @@
 package com.amadeus;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,7 +9,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,8 +25,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -243,6 +252,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
         String lastEmotion = amadeusSettings.getString(APP_PREFERENCES_LAST_EMOTION, getResources().getString(R.string.first_emotion));
 
+        Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR, false);
         Boolean endDialog = amadeusSettings.getBoolean(APP_PREFERENCES_END_DIALOG, false);
 
         if (endDialog == true) {
@@ -282,9 +292,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         amadeusEditor.putBoolean("regeneration", false).commit();
 
-        String emotionName = Recognizer.getEmotionName(MainActivity.this,lastEmotion);
-        int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-        charMain.setImageResource(emotionResId);
+        if (customChar == false) {
+            String emotionName = Recognizer.getEmotionName(MainActivity.this, lastEmotion);
+            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+            charMain.setImageResource(emotionResId);
+        } else {
+            Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, lastEmotion);
+            charMain.setImageBitmap(bitmap);
+        }
 
     }
 
@@ -389,13 +404,11 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         Log.i("MAIN", "DIALOGUE WAS ENDED BY CHARACTER");
 
                         if (customChar == false) {
-                            String emotionName = defaultCharName.trim().toLowerCase() + "_back";
-                            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                            int emotionResId = getResources().getIdentifier(defaultCharName.trim().toLowerCase() + "emotion_back", "drawable", getPackageName());
                             charMain.setImageResource(emotionResId);
                         } else {
-                            String emotionName = charName.trim().toLowerCase() + "_back";
-                            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-                            charMain.setImageResource(emotionResId);
+                            Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, "emotion_back");
+                            charMain.setImageBitmap(bitmap);
                         }
 
                         String[] buffer = text.split("END_OF_DIALOG");
@@ -411,9 +424,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         buttonSend.setVisibility(View.GONE);
 
                     } else {
-                        String emotionName = Recognizer.getEmotionName(MainActivity.this, emotion);
-                        int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-                        charMain.setImageResource(emotionResId);
+                        if (customChar == false) {
+                            String emotionName = Recognizer.getEmotionName(MainActivity.this, emotion);
+                            int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                            charMain.setImageResource(emotionResId);
+                        } else {
+                            Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, emotion);
+                            charMain.setImageBitmap(bitmap);
+                        }
                     }
 
                     buff = text.replace("END_OF_DIALOGUE","");
@@ -514,6 +532,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                 fullChatHistory = amadeusSettings.getString(APP_PREFERENCES_FULL_CHAT_HISTORY,"");
 
+
                 Log.d("VOLLEY","FULL HISTORY: " + fullChatHistory);
 
                 amadeusEditor.remove("currentChatHistory").commit();
@@ -525,9 +544,18 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                 textResponse.setText(charGreeting);
 
-                String emotionName = Recognizer.getEmotionName(this,getString(R.string.first_emotion));
-                int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-                charMain.setImageResource(emotionResId);
+
+                Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
+
+                if (customChar == false) {
+                    String emotionName = Recognizer.getEmotionName(MainActivity.this, getString(R.string.first_emotion));
+                    int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                    charMain.setImageResource(emotionResId);
+                } else {
+                    Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, getString(R.string.first_emotion));
+                    charMain.setImageBitmap(bitmap);
+                }
+
 
                 amadeusEditor.putBoolean("regeneration", false).commit();
                 amadeusEditor.putBoolean("endDialog", false).commit();
@@ -578,10 +606,16 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     Log.d("MAIN","LAST RESPONSE: " + text);
                     Log.d("MAIN","LAST EMOTION: " + emotion);
 
+                    customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
 
-                    String emotionNameRemoving = Recognizer.getEmotionName(MainActivity.this,emotion);
-                    int emotionResIdRemoving = getResources().getIdentifier(emotionNameRemoving, "drawable", getPackageName());
-                    charMain.setImageResource(emotionResIdRemoving);
+                    if (customChar == false) {
+                        String emotionName = Recognizer.getEmotionName(MainActivity.this, emotion);
+                        int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                        charMain.setImageResource(emotionResId);
+                    } else {
+                        Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, emotion);
+                        charMain.setImageBitmap(bitmap);
+                    }
 
                     amadeusEditor.putString("lastResponse", text);
                     amadeusEditor.putString("currentChatHistory", currentChatHistory);
@@ -656,9 +690,16 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
                                 String emotion = emotionsArray[which];
 
-                                String emotionName = Recognizer.getEmotionName(MainActivity.this,emotion);
-                                int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
-                                charMain.setImageResource(emotionResId);
+                                Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
+
+                                if (customChar == false) {
+                                    String emotionName = Recognizer.getEmotionName(MainActivity.this, emotion);
+                                    int emotionResId = getResources().getIdentifier(emotionName, "drawable", getPackageName());
+                                    charMain.setImageResource(emotionResId);
+                                } else {
+                                    Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, emotion);
+                                    charMain.setImageBitmap(bitmap);
+                                }
 
                             }
                         })
@@ -674,6 +715,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         }
         return true;
     }
+
 
 }
 

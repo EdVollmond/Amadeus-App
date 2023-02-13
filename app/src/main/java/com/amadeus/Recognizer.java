@@ -2,8 +2,14 @@ package com.amadeus;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Random;
 
 public class Recognizer {
@@ -137,7 +143,7 @@ public class Recognizer {
             }
         }
 
-        if (rawText.equals("")|rawText.equals("**")){
+        if (rawText.equals("")|rawText.equals("**")|rawText.equals("\"")){
             rawText = "...";
         }
 
@@ -156,15 +162,15 @@ public class Recognizer {
     }
 
     public static String getEmotionName(Context context, String emotion){
+
         amadeusSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
 
         String drawableName = "emotion_neutral";
         String defaultCharName = context.getResources().getString(R.string.default_char_name);
         Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
-        String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
 
-        if (emotion != "neutral") {
+        if (!emotion.equals("neutral")) {
             final Random random = new Random();
 
             String emotions = amadeusSettings.getString(APP_PREFERENCES_EMOTIONS, "");
@@ -184,8 +190,12 @@ public class Recognizer {
             String emotion_apathetic = amadeusSettings.getString(APP_PREFERENCES_EMOTIONS_APATHETIC, "");
             String emotion_angry = amadeusSettings.getString(APP_PREFERENCES_EMOTIONS_ANGRY, "");
 
+            Log.i("RECOG","Emotion:" + emotion);
 
             if (emotions.contains(emotion)) {
+
+                Log.i("RECOG","Emotion in emotions list");
+
                 if (customChar == false) {
                     if (emotion_angry.contains(emotion)) {
                         if (random.nextBoolean() == true) {
@@ -312,13 +322,43 @@ public class Recognizer {
             emotionName = defaultCharName.trim().toLowerCase() + "_" + drawableName;
 
         } else {
-            emotionName = charName.trim().toLowerCase() + "_" + drawableName;
+            emotionName = drawableName;
         }
 
-        Log.i("RECOG",customChar.toString());
-        Log.i("RECOG",emotionName);
+        Log.i("RECOG","custom char " + customChar.toString());
+        Log.i("RECOG","emotionname " + emotionName);
 
         return emotionName;
     }
+
+    public static Bitmap getCustomEmotion(Context context, String emotion){
+        amadeusSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME, "");
+        String emotionName = Recognizer.getEmotionName(context, emotion);
+        File data = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        String folder = charName.trim().toLowerCase().replace(" ","_");
+        File file = new File(data + "/" + folder + "/" + emotionName + ".png");
+        if (file.exists()) {
+            Log.i("RECOGNIZER", "EXISTS");
+            if (file.canRead()){
+                Log.i("RECOGNIZER", "CAN READ");
+            } else {
+                Toast.makeText(context, "ERROR: can't read emotion file", Toast.LENGTH_SHORT).show();
+                Log.i("RECOGNIZER", "CAN'T READ");
+            }
+        } else {
+            Toast.makeText(context, "ERROR: can't find emotion file", Toast.LENGTH_SHORT).show();
+            Log.i("RECOGNIZER", "NOT EXISTS");
+        }
+        Log.i("RECOGNIZER", data.toString());
+        Log.i("RECOGNIZER", file.toString());
+        Bitmap bitmap = BitmapFactory.decodeFile(file.toString());
+        return bitmap;
+    }
+
+
+
+
+
 
 }

@@ -1,14 +1,24 @@
 package com.amadeus;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
+
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CharacterEditActivity extends AppCompatActivity {
+
+    private static final int STORAGE_PERMISSION_CODE = 101;
 
     public static final String APP_PREFERENCES = "amadeusSettings";
 
@@ -45,12 +57,17 @@ public class CharacterEditActivity extends AppCompatActivity {
 
     private Switch switchCustomChar;
 
+    private ImageButton buttonUploadSprites;
+
+    String path;
+    Uri uri;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edit);
         amadeusSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-
 
         charNameEdit = findViewById(R.id.charName);
         charPersonaEdit = findViewById(R.id.charPersona);
@@ -62,6 +79,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         charGreeting3Edit = findViewById(R.id.charGreetings3);
         charGreeting4Edit = findViewById(R.id.charGreetings4);
         switchCustomChar = findViewById(R.id.switchCustomChar);
+        buttonUploadSprites = findViewById(R.id.buttonUploadSprites);
 
         String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
         String charPersona = amadeusSettings.getString(APP_PREFERENCES_CHAR_PERSONA,"");
@@ -90,6 +108,13 @@ public class CharacterEditActivity extends AppCompatActivity {
 
         Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
         switchCustomChar.setChecked(customChar);
+
+        switchCustomChar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+            }
+        });
 
     }
 
@@ -183,4 +208,34 @@ public class CharacterEditActivity extends AppCompatActivity {
         Intent intentMain = new Intent(this, MainActivity.class);
         startActivity(intentMain);
     }
+
+    public void checkPermission(String permission, int requestCode)
+    {
+        // Checking if permission is not granted
+        if (ContextCompat.checkSelfPermission(CharacterEditActivity.this, permission) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(CharacterEditActivity.this, new String[] { permission }, requestCode);
+        }
+        else {
+            Toast.makeText(CharacterEditActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(CharacterEditActivity.this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(CharacterEditActivity.this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         int outputMax = amadeusSettings.getInt(APP_PREFERENCES_OUTPUT_MAX, 50);
         int contextMemoryMax = amadeusSettings.getInt(APP_PREFERENCES_CONTEXT_MEMORY_MAX, 2048);
-        int temperature = amadeusSettings.getInt(APP_PREFERENCES_temperature, 50);
+        int temperature = amadeusSettings.getInt(APP_PREFERENCES_temperature, 95);
         int repetitionPenalty = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY, 108);
         int repetitionPenaltyRange = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY_RANGE, 1024);
 
