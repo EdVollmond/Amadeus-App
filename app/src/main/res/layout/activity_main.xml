@@ -37,7 +37,7 @@
         android:background="@drawable/textresponse">
 
 
-        <TextView
+        <EditText
             android:id="@+id/textResponse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,6 +47,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/noto_sans"
+            android:gravity="top|left"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:shadowColor="@color/textResponseShadowColor"
@@ -60,7 +61,9 @@
             android:textColorHint="@color/textHintColor"
             android:textColorLink="@color/textLinkColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/textHintColor"
+            android:textCursorDrawable="@drawable/color_cursor"/>
     </RelativeLayout>
 
     <ImageButton

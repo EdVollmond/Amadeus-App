@@ -325,7 +325,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String lastEmotion = amadeusSettings.getString(APP_PREFERENCES_LAST_EMOTION, getResources().getString(R.string.default_emotion));
 
         String charGreeting = Greetings.randomGeneration(this);
-        String lastResponse = amadeusSettings.getString(APP_PREFERENCES_LAST_RESPONSE, charGreeting);
+        String lastResponse = textResponse.getText().toString();
+
 
         String currentChatHistory = amadeusSettings.getString(APP_PREFERENCES_CURRENT_CHAT_HISTORY, "");
 
