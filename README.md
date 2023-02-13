@@ -63,7 +63,7 @@ Remember! Try not to write in too much detail in this page, it takes away contex
 After editing the fields, you can save them by tapping the big "Save changes" button. If you close the editing screen, the changes will not be saved. If you want to reset the character personality to the default, then you should click on the "Reset" button in the upper-right part of the screen and then click "Save changes".
 
 ### Custom characters
-It is possible to change Kurisu Makise sprites to sprites of any other character. To do this, you need to put 17 sprites with the character's emotions in a folder, and put this folder in your "Downloads" directory. The name of the folder must be exactly same with the name of character in "Name" field of Character edit screen, but written in lowercase. If there is a space in the name of character, it is replaced by underlining.
+It is possible to change Kurisu Makise sprites to sprites of any other character. For example, replace it with any character sprites from any visual novel. To do this, you need to put 17 sprites with the character's emotions in a folder, and put this folder in your "Downloads" directory. The name of the folder must be exactly same with the name of character in "Name" field of Character edit screen, but written in lowercase. If there is a space in the name of character, it is replaced by underlining.
 The emotion sprite file should have a transparent background and be in .png format. The file name should be in the following format:
 
 > emotion_emotionname.png
