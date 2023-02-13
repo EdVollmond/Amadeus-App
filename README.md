@@ -63,8 +63,10 @@ Remember! Try not to write in too much detail in this page, it takes away contex
 After editing the fields, you can save them by tapping the big "Save changes" button. If you close the editing screen, the changes will not be saved. If you want to reset the character personality to the default, then you should click on the "Reset" button in the upper-right part of the screen and then click "Save changes".
 
 ### Custom characters
-At the moment, there is some possibility to change Kurisu Makise to any other VN character. To do this, you need to put 17 sprites with the emotions of the character in the "drawable" folder inside the .apk package. The files must have a name in the following format:
-> charactername_emotion_emotionname.png
+It is possible to change Kurisu Makise sprites to sprites of any other character. To do this, you need to put 17 sprites with the character's emotions in a folder, and put this folder in your "Downloads" directory. The name of the folder must be exactly same with the name of character in "Name" field of Character edit screen, but written in lowercase. If there is a space in the name of character, it is replaced by underlining.
+The emotion sprite file should have a transparent background and be in .png format. The file name should be in the following format:
+
+> emotion_emotionname.png
 
 List of emotion names:
 > neutral
@@ -89,9 +91,7 @@ List of emotion names:
 
 It's okay if the same sprite is used for different emotions. The main thing is that there should be 17 files.
 
-The name of the character in the file name is written in lowercase. If there is a space in the name, it is replaced by underlining.
+For example, if the character's name is **Amane Suzu**, then the path to the sprite file on which she **blushes** should be like this:
+> /Download/amane_suzu/emotion_blushed.png
 
-For example, if the character's name is **Amane Suzu**, then the sprite file where she **blushes** should be called like this:
-> amane_suzu_emotion_blushed.png
-
-After you have placed the files in the .apk package, you need to enter the name of the character in the "Name" field of the character editing screen and at the very bottom put the toggle switch "Custom character sprites" in the enabled position.
+After you have placed the folder in "Download" directory of your smartphone storage, you need to go to the very bottom of the character editing screen and put the toggle switch "Custom character sprites" to the enabled position.
