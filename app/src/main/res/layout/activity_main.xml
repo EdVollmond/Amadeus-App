@@ -46,6 +46,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/textHintColor"
             android:fontFamily="@font/noto_sans"
             android:gravity="top|left"
             android:inputType="textMultiLine"
@@ -55,15 +56,18 @@
             android:shadowDy="2"
             android:shadowRadius="10"
             android:textAlignment="textStart"
-            android:textAllCaps="false"
             android:textColor="@color/textResponseColor"
             android:textColorHighlight="@color/textHighlightColor"
             android:textColorHint="@color/textHintColor"
             android:textColorLink="@color/textLinkColor"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/textHintColor"
-            android:textCursorDrawable="@drawable/color_cursor"/>
+            android:textIsSelectable="true"
+
+
+
+            />
     </RelativeLayout>
 
     <ImageButton
@@ -126,7 +130,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@id/buttonSend"
-            android:ems="10"
             android:fontFamily="@font/noto_sans"
             android:hint="@string/default_text"
             android:inputType="textMultiLine"

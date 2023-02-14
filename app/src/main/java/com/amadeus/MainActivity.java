@@ -40,7 +40,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
     private EditText textInput;
     private ImageButton buttonSend;
-    private TextView textResponse;
+    private EditText textResponse;
     private ImageView charMain;
     private TextView errorTextMain;
     private pl.droidsonroids.gif.GifImageView progressBar;
@@ -95,7 +95,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         progressBar = findViewById(R.id.progressBarConnect);
 
-        textResponse.setMovementMethod(new ScrollingMovementMethod());
+        //textResponse.setMovementMethod(new ScrollingMovementMethod());
 
         try {
             BufferedReader reader = null;
@@ -405,7 +405,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         Log.i("MAIN", "DIALOGUE WAS ENDED BY CHARACTER");
 
                         if (customChar == false) {
-                            int emotionResId = getResources().getIdentifier(defaultCharName.trim().toLowerCase() + "emotion_back", "drawable", getPackageName());
+                            int emotionResId = getResources().getIdentifier(defaultCharName.trim().toLowerCase() + "_emotion_back", "drawable", getPackageName());
                             charMain.setImageResource(emotionResId);
                         } else {
                             Bitmap bitmap = Recognizer.getCustomEmotion(MainActivity.this, "emotion_back");
