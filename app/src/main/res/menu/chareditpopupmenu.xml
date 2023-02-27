@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/json_import"
+        android:fontFamily="@font/noto_sans"
+        android:title="Import from JSON"
+        android:visible="true" />
+    <item
+        android:id="@+id/json_export"
+        android:fontFamily="@font/noto_sans"
+        android:title="Export in JSON"
+        android:visible="true" />
+    <item
+        android:id="@+id/set_default"
+        android:fontFamily="@font/noto_sans"
+        android:title="Reset to default"
+        android:visible="true" />
+</menu>

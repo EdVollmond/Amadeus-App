@@ -11,7 +11,7 @@
         android:title="Settings"
         android:visible="true" />
     <item
-        android:id="@+id/start_new_chat"
+        android:id="@+id/start_new"
         android:title="Start new chat"
         android:fontFamily="@font/noto_sans"
         android:visible="true" />

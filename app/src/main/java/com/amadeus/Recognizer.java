@@ -356,6 +356,27 @@ public class Recognizer {
         return bitmap;
     }
 
+    public static File getCharJson(Context context, String jsonName){
+        File data = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        String folder = jsonName.trim();
+        File file = new File(data + "/" + folder);
+        if (file.exists()) {
+            Log.i("RECOGNIZER", "EXISTS");
+            if (file.canRead()){
+                Log.i("RECOGNIZER", "CAN READ");
+            } else {
+                Toast.makeText(context, "ERROR: can't read .json file", Toast.LENGTH_SHORT).show();
+                Log.i("RECOGNIZER", "CAN'T READ");
+            }
+        } else {
+            Toast.makeText(context, "ERROR: can't find .json file", Toast.LENGTH_SHORT).show();
+            Log.i("RECOGNIZER", "NOT EXISTS");
+        }
+        Log.i("RECOGNIZER", data.toString());
+        Log.i("RECOGNIZER", file.toString());
+        return file;
+    }
+
 
 
 

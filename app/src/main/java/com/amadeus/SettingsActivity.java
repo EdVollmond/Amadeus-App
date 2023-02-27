@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView repetitionPenaltyCounter;
     private TextView repetitionPenaltyRangeCounter;
 
+    private EditText debugLogText;
 
     private SeekBar outputMaxSB;
     private SeekBar contextMemoryMaxSB;
@@ -31,7 +34,9 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch switchEndingByChar;
 
 
+
     public static final String APP_PREFERENCES = "amadeusSettings";
+    public static final String APP_PREFERENCES_BUG_LOG = "bugLog";
     public static final String APP_PREFERENCES_OUTPUT_MAX = "outputMax";
     public static final String APP_PREFERENCES_CONTEXT_MEMORY_MAX = "contextMemoryMax";
     public static final String APP_PREFERENCES_temperature = "temperature";
@@ -51,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity {
         amadeusSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         Boolean endingByChar = amadeusSettings.getBoolean(APP_PREFERENCES_ENDING_BY_CHAR, true);
+        String bugLog = amadeusSettings.getString(APP_PREFERENCES_BUG_LOG,"Debug log is empty");
 
         int outputMax = amadeusSettings.getInt(APP_PREFERENCES_OUTPUT_MAX, 50);
         int contextMemoryMax = amadeusSettings.getInt(APP_PREFERENCES_CONTEXT_MEMORY_MAX, 2048);
@@ -58,11 +64,17 @@ public class SettingsActivity extends AppCompatActivity {
         int repetitionPenalty = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY, 108);
         int repetitionPenaltyRange = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY_RANGE, 1024);
 
+        debugLogText = findViewById(R.id.debugLogText);
+
         outputMaxSB = findViewById(R.id.outputMaxSB);
         contextMemoryMaxSB = findViewById(R.id.contextMemoryMaxSB);
         temperatureSB = findViewById(R.id.temperatureSB);
         repetitionPenaltySB = findViewById(R.id.repetitionPenaltySB);
         repetitionPenaltyRangeSB = findViewById(R.id.repetitionPenaltyRangeSB);
+
+        debugLogText.setText(bugLog);
+        Log.i("SETTINGS", bugLog);
+
 
         outputMaxSB.setProgress(outputMax);
         contextMemoryMaxSB.setProgress(contextMemoryMax);

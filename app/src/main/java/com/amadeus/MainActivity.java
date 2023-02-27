@@ -10,11 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +24,7 @@ import android.widget.Toast;
 
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -44,8 +38,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     private ImageView charMain;
     private TextView errorTextMain;
     private pl.droidsonroids.gif.GifImageView progressBar;
+    private pl.droidsonroids.gif.GifImageView glitch;
 
     public static final String APP_PREFERENCES = "amadeusSettings";
+    public static final String APP_PREFERENCES_BUG_LOG = "bugLog";
     public static final String APP_PREFERENCES_FULL_CHAT_HISTORY = "fullChatHistory";
     public static final String APP_PREFERENCES_CURRENT_CHAT_HISTORY = "currentChatHistory";
 
@@ -71,7 +67,6 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     public static final String APP_PREFERENCES_REGENERATION = "regeneration";
     public static final String APP_PREFERENCES_END_DIALOG = "endDialog";
 
-    public static final String APP_PREFERENCES_DEBUGGER = "debugger";
 
     public static final String APP_PREFERENCES_CUSTOM_CHAR = "customChar";
     static SharedPreferences amadeusSettings;
@@ -92,7 +87,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         textResponse = findViewById(R.id.textResponse);
         charMain = findViewById(R.id.charMain);
         buttonSend = findViewById(R.id.buttonSend);
-
+        glitch = findViewById(R.id.glitch);
         progressBar = findViewById(R.id.progressBarConnect);
 
         //textResponse.setMovementMethod(new ScrollingMovementMethod());
@@ -267,7 +262,9 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 amadeusEditor.putString("fullChatHistory", newFullChatHistory).commit();
             }
 
-            Log.d("VOLLEY","FULL HISTORY: " + fullChatHistory);
+            Log.d("MAIN","FULL HISTORY: " + fullChatHistory);
+            String bugLog = amadeusSettings.getString(APP_PREFERENCES_BUG_LOG, "");
+            amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]"+"FULL HISTORY: " + fullChatHistory);
 
             amadeusEditor.remove("currentChatHistory").commit();
             amadeusEditor.remove("lastMessage").commit();
@@ -318,7 +315,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         Boolean regeneration = amadeusSettings.getBoolean(APP_PREFERENCES_REGENERATION, false);
         Boolean endingByChar = amadeusSettings.getBoolean(APP_PREFERENCES_ENDING_BY_CHAR, true);
+
         Log.i("MAIN", "ENDING BY CHAR: " + endingByChar);
+        String bugLog = amadeusSettings.getString(APP_PREFERENCES_BUG_LOG, "");
+        amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "ENDING BY CHAR: " + endingByChar);
+
+
 
 
         String lastMessage = amadeusSettings.getString(APP_PREFERENCES_LAST_MESSAGE, "");
@@ -339,6 +341,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             if (regeneration == true) {
                 message = lastMessage;
                 Log.i("MAIN", "LAST MESSAGE: " + lastMessage);
+                amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "LAST MESSAGE: " + lastMessage);
+
             } else {
                 String rawMessage = textInput.getText().toString();
 
@@ -366,7 +370,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             }
 
             Log.i("MAIN", "REGENERATION: " + regeneration);
+            amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "REGENERATION: " + regeneration);
             Log.i("MAIN", "MESSAGE: " + message);
+            amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "MESSAGE: " + message);
+
 
             amadeusEditor.putBoolean("waiting", true).commit();
 
@@ -390,7 +397,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     String emotion = TextEmotion[1];
 
                     Log.i("MAIN", "RAW2 TEXT: " + text);
+                    String bugLog = amadeusSettings.getString(APP_PREFERENCES_BUG_LOG, "");
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "RAW2 TEXT: " + text);
                     Log.i("MAIN", "EMOTION: " + emotion);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "EMOTION: " + emotion);
+
+
 
                     String buff = text.replace("END_OF_DIALOG","END_OF_DIALOGUE")
                             .replace("*end of conversation*","END_OF_DIALOGUE")
@@ -399,10 +411,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                             .replace("*end of dialogue*","END_OF_DIALOGUE");
                     text = buff;
 
-
                     if (text.contains("END_OF_DIALOGUE") & endingByChar == true) {
 
                         Log.i("MAIN", "DIALOGUE WAS ENDED BY CHARACTER");
+                        amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "DIALOGUE WAS ENDED BY CHARACTER" );
 
                         if (customChar == false) {
                             int emotionResId = getResources().getIdentifier(defaultCharName.trim().toLowerCase() + "_emotion_back", "drawable", getPackageName());
@@ -448,15 +460,19 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     textResponse.setText(text);
 
                     Log.d("MAIN", "HISTORY: " + currentChatHistory);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "HISTORY: " + currentChatHistory);
+
 
                     amadeusEditor.putBoolean("regeneration", false).commit();
                     buttonSend.setImageResource(R.drawable.button_send);
                     Log.d("MAIN", "REGENERATION CHANGED ON: " + "FALSE");
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "REGENERATION CHANGED ON: " + "FALSE");
 
 
                     lastResponse = text;
                     amadeusEditor.putString("lastResponse", lastResponse).commit();
                     Log.d("MAIN", "LAST RESPONSE: " + "FALSE");
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "LAST RESPONSE: " + "FALSE");
 
                     progressBar.setVisibility(View.GONE);
                 }
@@ -464,9 +480,21 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 @Override
                 public void onError(String result) {
                     Log.e("VOLLEY", result);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[VOLLEY]" + result);
+
                     progressBar.setVisibility(View.GONE);
                     errorTextMain.setText("ERROR: can't get response");
                     errorTextMain.setVisibility(View.VISIBLE);
+                    Boolean customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR, false);
+                    if (customChar == false) {
+                        glitch.setVisibility(View.VISIBLE);
+                        View view = v;
+                        view.postDelayed(new Runnable() {
+                            public void run() {
+                                glitch.setVisibility(View.GONE);
+                            }
+                        }, 500);
+                    }
                 }
             });
         }
@@ -498,6 +526,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String charName = amadeusSettings.getString(APP_PREFERENCES_CHAR_NAME,"");
         String currentChatHistory = amadeusSettings.getString(APP_PREFERENCES_CURRENT_CHAT_HISTORY,"");
         String fullChatHistory = amadeusSettings.getString(APP_PREFERENCES_FULL_CHAT_HISTORY,"");
+        String bugLog = amadeusSettings.getString(APP_PREFERENCES_BUG_LOG, "");
 
         switch (item.getItemId()) {
 
@@ -516,7 +545,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 return true;
 
 
-            case R.id.start_new_chat:
+            case R.id.start_new:
                 errorTextMain.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -534,7 +563,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 fullChatHistory = amadeusSettings.getString(APP_PREFERENCES_FULL_CHAT_HISTORY,"");
 
 
-                Log.d("VOLLEY","FULL HISTORY: " + fullChatHistory);
+                Log.d("MAIN","FULL HISTORY: " + fullChatHistory);
+                amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "FULL HISTORY: " + fullChatHistory);
+
+                amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "FULL HISTORY: " + fullChatHistory);
 
                 amadeusEditor.remove("currentChatHistory").commit();
                 amadeusEditor.remove("lastMessage").commit();
@@ -563,7 +595,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 buttonSend.setImageResource(R.drawable.button_send);
                 buttonSend.setVisibility(View.VISIBLE);
 
-                Log.d("VOLLEY","REGENERATION CHANGED ON: " + "FALSE");
+                Log.d("MAIN","REGENERATION CHANGED ON: " + "FALSE");
+                amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "REGENERATION CHANGED ON: " + "FALSE");
+
+
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, "New chat started", Toast.LENGTH_SHORT).show();
                 return true;
@@ -580,16 +615,18 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     progressBar.setVisibility(View.VISIBLE);
 
                     Log.d("MAIN","OLD HISTORY: " + currentChatHistory);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "OLD HISTORY: " + currentChatHistory);
 
                     String[] historySplitted = currentChatHistory.split("\\\\n+");
 
-
                     Log.d("MAIN","SPLITTED: " + String.join("|||",historySplitted));
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "SPLITTED: " + String.join("|||",historySplitted));
 
                     String[] newHistory = Arrays.copyOf(historySplitted, historySplitted.length - 2);
                     currentChatHistory = String.join("\\n",newHistory);
 
-                    Log.d("VOLLEY","NEW HISTORY: " + String.join("\\n",newHistory));
+                    Log.d("MAIN","NEW HISTORY: " + String.join("\\n",newHistory));
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "NEW HISTORY: " + String.join("\\n",newHistory));
 
                     String text = "";
                     String rawEmotion = "";
@@ -605,7 +642,9 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                     emotion = rawEmotion.replace(charName,"");
 
                     Log.d("MAIN","LAST RESPONSE: " + text);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "LAST RESPONSE: " + text);
                     Log.d("MAIN","LAST EMOTION: " + emotion);
+                    amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "LAST EMOTION: " + emotion);
 
                     customChar = amadeusSettings.getBoolean(APP_PREFERENCES_CUSTOM_CHAR,false);
 
@@ -648,14 +687,16 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         if (endDialog == true) {
                             buttonSend.setVisibility(View.GONE);
                         }
-                        Log.d("VOLLEY","REGENERATION CHANGED ON: " + "FALSE");
+                        Log.d("MAIN","REGENERATION CHANGED ON: " + "FALSE");
+                        amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "REGENERATION CHANGED ON: " + "FALSE");
                         Toast.makeText(this, "Regeneration mode disabled", Toast.LENGTH_SHORT).show();
                     }else {
                         amadeusEditor.putBoolean("regeneration", true);
                         amadeusEditor.commit();
                         buttonSend.setImageResource(R.drawable.button_regenerate);
                         buttonSend.setVisibility(View.VISIBLE);
-                        Log.d("VOLLEY","REGENERATION CHANGED ON: " + "TRUE");
+                        Log.d("MAIN","REGENERATION CHANGED ON: " + "TRUE");
+                        amadeusEditor.putString("bugLog",bugLog + "\n" + "[MAIN]" + "REGENERATION CHANGED ON: " + "TRUE");
                         Toast.makeText(this, "Regeneration mode enabled", Toast.LENGTH_SHORT).show();
                     }
                 }else {

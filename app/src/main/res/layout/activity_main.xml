@@ -18,6 +18,15 @@
         tools:visibility="visible" />
 
     <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/glitch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/glitch"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/progressBarConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,13 +70,11 @@
             android:textColorHint="@color/textHintColor"
             android:textColorLink="@color/textLinkColor"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textIsSelectable="true"
+            android:textSize="16sp"
 
 
-
-            />
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <ImageButton

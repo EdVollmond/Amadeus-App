@@ -86,43 +86,6 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/charEndingLayout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp">
-
-                <TextView
-                    android:id="@+id/charEndingText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:shadowColor="@color/ColorPrimaryDark"
-                    android:shadowRadius="20"
-                    android:text="Character can finish dialogue"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/textHighlightColor"
-                    android:textColorHighlight="@color/textInputColor"
-                    android:textColorHint="@color/textHintColor"
-                    android:textColorLink="@color/textLinkColor"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="16dp"/>
-
-                <Switch
-                    android:id="@+id/switchEndingByChar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:checked="true"
-                    android:theme="@style/Switch" />/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/outputMax"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -175,6 +138,64 @@
                     android:backgroundTint="@color/textHighlightColor"
                     android:max="512"
                     android:min="16"
+                    android:progressTint="@color/ColorPrimary"
+                    android:thumbTint="@color/ColorPrimary" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/repetitionPenaltyRange"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/imageView">
+
+                <TextView
+                    android:id="@+id/repetitionPenaltyRangeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noto_sans"
+                    android:shadowColor="@color/ColorPrimaryDark"
+                    android:shadowRadius="20"
+                    android:text="Repetition penalty range"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/textHighlightColor"
+                    android:textColorHighlight="@color/textInputColor"
+                    android:textColorHint="@color/textHintColor"
+                    android:textColorLink="@color/textLinkColor"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/repetitionPenaltyRangeCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    android:fontFamily="@font/noto_sans"
+                    android:shadowColor="@color/ColorPrimaryDark"
+                    android:shadowRadius="20"
+                    android:text="1024"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/textHintColor"
+                    android:textColorHighlight="@color/textInputColor"
+                    android:textColorHint="@color/textHintColor"
+                    android:textColorLink="@color/textLinkColor"
+                    android:textSize="20sp" />
+
+                <SeekBar
+                    android:id="@+id/repetitionPenaltyRangeSB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/textHighlightColor"
+                    android:max="2048"
+                    android:min="0"
                     android:progressTint="@color/ColorPrimary"
                     android:thumbTint="@color/ColorPrimary" />
 
@@ -239,13 +260,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/temperature"
+                android:id="@+id/charEndingLayout"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/imageView">
+                android:layout_height="60dp">
 
                 <TextView
-                    android:id="@+id/temperatureText"
+                    android:id="@+id/charEndingText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -255,7 +275,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:shadowColor="@color/ColorPrimaryDark"
                     android:shadowRadius="20"
-                    android:text="Temperature"
+                    android:text="Character can finish dialogue"
                     android:textAlignment="textStart"
                     android:textColor="@color/textHighlightColor"
                     android:textColorHighlight="@color/textInputColor"
@@ -263,36 +283,16 @@
                     android:textColorLink="@color/textLinkColor"
                     android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/temperatureCounter"
+                <Switch
+                    android:id="@+id/switchEndingByChar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:fontFamily="@font/noto_sans"
-                    android:shadowColor="@color/ColorPrimaryDark"
-                    android:shadowRadius="20"
-                    android:text="0.65"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/textHintColor"
-                    android:textColorHighlight="@color/textInputColor"
-                    android:textColorHint="@color/textHintColor"
-                    android:textColorLink="@color/textLinkColor"
-                    android:textSize="20sp" />
-
-                <SeekBar
-                    android:id="@+id/temperatureSB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="20dp"
-                    android:backgroundTint="@color/textHighlightColor"
-                    android:max="200"
-                    android:min="10"
-                    android:progressTint="@color/ColorPrimary"
-                    android:thumbTint="@color/ColorPrimary" />
+                    android:checked="true"
+                    android:theme="@style/Switch" />/>
 
             </RelativeLayout>
 
@@ -355,13 +355,13 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/repetitionPenaltyRange"
+                android:id="@+id/temperature"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_below="@id/imageView">
 
                 <TextView
-                    android:id="@+id/repetitionPenaltyRangeText"
+                    android:id="@+id/temperatureText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -371,7 +371,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:shadowColor="@color/ColorPrimaryDark"
                     android:shadowRadius="20"
-                    android:text="Repetition penalty range"
+                    android:text="Temperature"
                     android:textAlignment="textStart"
                     android:textColor="@color/textHighlightColor"
                     android:textColorHighlight="@color/textInputColor"
@@ -380,7 +380,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/repetitionPenaltyRangeCounter"
+                    android:id="@+id/temperatureCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -390,7 +390,7 @@
                     android:fontFamily="@font/noto_sans"
                     android:shadowColor="@color/ColorPrimaryDark"
                     android:shadowRadius="20"
-                    android:text="1024"
+                    android:text="0.65"
                     android:textAlignment="textEnd"
                     android:textColor="@color/textHintColor"
                     android:textColorHighlight="@color/textInputColor"
@@ -399,16 +399,63 @@
                     android:textSize="20sp" />
 
                 <SeekBar
-                    android:id="@+id/repetitionPenaltyRangeSB"
+                    android:id="@+id/temperatureSB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="20dp"
                     android:backgroundTint="@color/textHighlightColor"
-                    android:max="2048"
-                    android:min="0"
+                    android:max="200"
+                    android:min="10"
                     android:progressTint="@color/ColorPrimary"
                     android:thumbTint="@color/ColorPrimary" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/debugLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/debugLogTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noto_sans"
+                    android:shadowColor="@color/ColorPrimaryDark"
+                    android:shadowRadius="20"
+                    android:text="Debug Log:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/textHighlightColor"
+                    android:textColorHighlight="@color/textInputColor"
+                    android:textColorHint="@color/textHintColor"
+                    android:textColorLink="@color/textLinkColor"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/debugLogText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/noto_sans"
+                    android:shadowColor="@color/ColorPrimaryDark"
+                    android:shadowRadius="20"
+                    android:text="Debug log is empty"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/textInputColor"
+                    android:textColorHighlight="@color/textHighlightColor"
+                    android:textColorHint="@color/textHintColor"
+                    android:textColorLink="@color/textLinkColor"
+                    android:gravity="start"
+                    android:textSize="20sp" />
+
 
             </RelativeLayout>
 
