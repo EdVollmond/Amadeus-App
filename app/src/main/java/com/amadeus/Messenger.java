@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import static com.amadeus.MainActivity.APP_PREFERENCES_LAST_RESPONSE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -23,14 +25,14 @@ import java.io.UnsupportedEncodingException;
 public class Messenger {
 
     public static final String APP_PREFERENCES = "amadeusSettings";
-    public static final String APP_PREFERENCES_OUTPUT_MAX = "outputMax";
-    public static final String APP_PREFERENCES_CONTEXT_MEMORY_MAX = "contextMemoryMax";
-    public static final String APP_PREFERENCES_temperature = "temperature";
-    public static final String APP_PREFERENCES_REPETITION_PENALTY = "repetitionPenalty";
-    public static final String APP_PREFERENCES_REPETITION_PENALTY_RANGE = "repetitionPenaltyRange";
-    public static final String APP_PREFERENCES_END_DIALOG = "endDialog";
-    public static final String APP_PREFERENCES_CURRENT_CHAT_HISTORY = "currentChatHistory";
     public static final String APP_PREFERENCES_URL = "inputURL";
+    public static final String APP_PREFERENCES_USER_ID = "userId";
+    public static final String APP_PREFERENCES_USER_NAME = "userName";
+    public static final String APP_PREFERENCES_CHAR_ID = "charId";
+    public static final String APP_PREFERENCES_LAST_EMOTION = "lastEmotion";
+    public static final String APP_PREFERENCES_LAST_RESPONSE = "lastResponse";
+    public static final String APP_PREFERENCES_DIALOG_ID = "dialogId";
+
 
     static SharedPreferences amadeusSettings;
 
@@ -38,77 +40,54 @@ public class Messenger {
     public static void onSend(Context context,String message,final VolleyCallback callback){
 
         amadeusSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor amadeusEditor = amadeusSettings.edit();
         String inputURL = amadeusSettings.getString(APP_PREFERENCES_URL, "");
+
         Log.i("LOG", "URL: " + inputURL);
 
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
-            String URL = inputURL + "/api/v1/generate/";
+            String URL = "http://5.166.207.206:8000" + "/generate/";
             JSONObject jsonBody = new JSONObject();
 
-/*            List<String> sampler_order = new ArrayList<>();
 
-            sampler_order.add("6");
-            sampler_order.add("0");
-            sampler_order.add("1");
-            sampler_order.add("2");
-            sampler_order.add("3");
-            sampler_order.add("4");
-            sampler_order.add("5");*/
-
-            //int[] sampler_order = {6, 0, 1, 2, 3, 4, 5};
-
-            int max_context_length = amadeusSettings.getInt(APP_PREFERENCES_CONTEXT_MEMORY_MAX, 2048);
-            int max_length = amadeusSettings.getInt(APP_PREFERENCES_OUTPUT_MAX, 50);
-            double rep_pen = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY, 108) * 0.01;
-            int rep_pen_range = amadeusSettings.getInt(APP_PREFERENCES_REPETITION_PENALTY_RANGE, 1024);
-            double temperature = amadeusSettings.getInt(APP_PREFERENCES_temperature, 50) * 0.01;
-
-            //Log.i("MESSENGER", sampler_order.toString());
-
-            jsonBody.put("prompt", message);
-            jsonBody.put("use_story", false);
-            jsonBody.put("use_memory", false);
-            jsonBody.put("use_authors_note", false);
-            jsonBody.put("use_world_info", false);
-            jsonBody.put("max_context_length", max_context_length);
-            jsonBody.put("max_length", max_length);
-            jsonBody.put("rep_pen", rep_pen);
-            jsonBody.put("rep_pen_range", rep_pen_range);
-            jsonBody.put("temperature", temperature);
-            jsonBody.put("tfs", 0.9);
-            jsonBody.put("top_a", 0);
-            jsonBody.put("top_k", 0);
-            jsonBody.put("top_p", 0.9);
-            jsonBody.put("typical", 1);
-            //jsonBody.put("sampler_order", sampler_order);
+            String userId = amadeusSettings.getString(APP_PREFERENCES_USER_ID, "User");
+            String userName = amadeusSettings.getString(APP_PREFERENCES_USER_NAME, "User");
+            String charId = amadeusSettings.getString(APP_PREFERENCES_CHAR_ID, "Kurisu");
+            String lastEmotion = amadeusSettings.getString(APP_PREFERENCES_LAST_EMOTION, "neutral");
+            String lastMessage = amadeusSettings.getString(APP_PREFERENCES_LAST_RESPONSE, "");
+            int dialogId = amadeusSettings.getInt(APP_PREFERENCES_DIALOG_ID, 0);
 
 
+            jsonBody.put("userId", "EdVollmond");
+            jsonBody.put("charId", charId);
+            jsonBody.put("dialogId", dialogId);
+            jsonBody.put("lastEmotion", lastEmotion);
+            jsonBody.put("lastMessage", lastMessage);
+            jsonBody.put("text", message);
+            jsonBody.put("regeneration", false);
+            jsonBody.put("userName", "Max");
 
             final String requestBody = jsonBody.toString();
+            Log.i("REQUEST: ", requestBody);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.i("VOLLEY", response.toString());
+                    Log.i("RESPONSE: ", response.toString());
 
-                    Boolean endDialog = amadeusSettings.getBoolean(APP_PREFERENCES_END_DIALOG, false);
+                    String responseText = "";
+                    String responseEmotion = "";
 
-                    if (endDialog == true) {
-                        amadeusEditor.putBoolean("endDialog", false).commit();
-                    }
 
-                    String rawText = "";
                     try {
-                        JSONArray resultsArray = response.getJSONArray("results");
-                        JSONObject resultsObject = resultsArray.getJSONObject(0);
-                        rawText = resultsObject.getString("text");
+                        responseText = response.getString("text");
+                        responseEmotion = response.getString("emotion");
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
 
-                    callback.onSuccess(rawText);
+
+                    callback.onSuccess(responseText, responseEmotion);
 
                 }
 

@@ -78,7 +78,7 @@ public class LauncherActivity extends AppCompatActivity {
             errorText.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
             RequestQueue queue = Volley.newRequestQueue(LauncherActivity.this);
-            String url = inputUrl + "/api/v1/info/version/";
+            String url = inputUrl + "/login/";
             Log.i("LAUNCHER",url);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {

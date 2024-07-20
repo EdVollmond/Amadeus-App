@@ -215,7 +215,6 @@ public class CharacterEditActivity extends AppCompatActivity implements PopupMen
                     public void onClick(DialogInterface dialog, int whichButton) {
                         String jsonName = edittext.getText().toString();
 
-                        File file = Recognizer.getCharJson(CharacterEditActivity.this,jsonName);
                         
 
 
